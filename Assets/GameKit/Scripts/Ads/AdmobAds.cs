@@ -7,7 +7,7 @@ using System.Collections;
 
 public class AdmobAds : MonoBehaviour
 {
-    string GameID = "ca-app-pub-9496460709444277~8576776327";
+    string GameID = "ca-app-pub-4631286883932087~4553681857";
 
     // Dummy ads
    /* string bannerAdId = "ca-app-pub-3940256099942544/6300978111";
