@@ -41,6 +41,9 @@ namespace GS.AA
         [Header("Sarah")]
         [SerializeField] private GameObject sarah;
 
+        [Header("Effects")]
+        public GameObject rippleEffect;
+
         [Header("Ball Prefab")]
         public GameObject BallPrefab;
 

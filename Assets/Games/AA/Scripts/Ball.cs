@@ -52,6 +52,7 @@ namespace GS.AA
                         if (touches[0].phase == TouchPhase.Began)
                         {
                             AudioManager.Instance.Play(GameManager.Instance.BallFireClip);
+
                             isFired = true;
                             isCurrentBall = false;
 

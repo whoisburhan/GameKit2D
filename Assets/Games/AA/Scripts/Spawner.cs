@@ -13,7 +13,9 @@ namespace GS.AA
         {
             if(SpawnedBallCounter > 0)
             {
+                Destroy(Instantiate(GameManager.Instance.rippleEffect, this.transform.position, this.transform.rotation), 2f);
                 GameObject go = Instantiate(GameManager.Instance.BallPrefab, this.transform.position, this.transform.rotation);
+
                 Ball ball = go.GetComponent<Ball>();
                 if(ball != null)
                 {
