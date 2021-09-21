@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if UNITY_ANDROID || UNITY_IOS
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Google.Play.Review;
@@ -46,3 +47,4 @@ public class InAppReviewManager : MonoBehaviour
         }
     }
 }
+#endif

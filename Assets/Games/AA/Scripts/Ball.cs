@@ -17,6 +17,7 @@ namespace GS.AA
         private bool isFired = false;
         private float speed = 300f;
         private Rigidbody2D rb2d;
+        [SerializeField] private ParticleSystem particle;
 
         private void OnEnable()
         {

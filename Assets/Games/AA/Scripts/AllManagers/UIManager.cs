@@ -71,7 +71,9 @@ namespace GS.AA
             gameOverPanel.SetActive(true);
             if (GameManager.Instance != null && GameManager.Instance.currentLevel > 5)
             {
+#if UNITY_ANDROID || UNITY_IOS
                 AdmobAds.instance.hideBanner();
+#endif
             }
         }
 
@@ -81,7 +83,9 @@ namespace GS.AA
             victoryParticle.SetActive(true);
             if (GameManager.Instance != null && GameManager.Instance.currentLevel > 5)
             {
+#if UNITY_ANDROID || UNITY_IOS
                 AdmobAds.instance.hideBanner();
+#endif
             }
         }
 
@@ -117,7 +121,7 @@ namespace GS.AA
             skipButton.onClick.AddListener(() => 
             {
                 OnForceToDestroy?.Invoke();
-                
+#if UNITY_ANDROID || UNITY_IOS
                if (AdmobAds.instance.IsRewarededVideoLoaded())
                 {
                     // Time.timeScale = 0f;
@@ -129,6 +133,7 @@ namespace GS.AA
                     Time.timeScale = 1f;
                     GameManager.Instance.ActivateSarah("Oops! No Rewarded\n ads available now...");
                 }
+#endif
             });
         }
 

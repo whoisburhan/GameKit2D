@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if UNITY_ANDROID
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Notifications.Android;
 using UnityEngine;
@@ -43,7 +44,7 @@ namespace GS.AA
 
         private void SetNotifications()
         {
-            #region Notification
+#region Notification
             var notification1 = new AndroidNotification();
             notification1.Title = "Hi! Its Sarah....";
             notification1.Text = NotificationTexts[Random.Range(0,NotificationTexts.Length)];
@@ -59,9 +60,9 @@ namespace GS.AA
                 AndroidNotificationCenter.CancelScheduledNotification(id1);
                 id1 = AndroidNotificationCenter.SendNotification(notification1, "reminder_1");
             }
-            #endregion
+#endregion
 
-            #region Notification
+#region Notification
             var notification2 = new AndroidNotification();
             notification2.Title = "Hi! Its Sarah....";
             notification2.Text = NotificationTexts[Random.Range(0, NotificationTexts.Length)];
@@ -77,9 +78,9 @@ namespace GS.AA
                 AndroidNotificationCenter.CancelScheduledNotification(id2);
                 id2 = AndroidNotificationCenter.SendNotification(notification2, "reminder_1");
             }
-            #endregion
+#endregion
 
-            #region Notification
+#region Notification
             var notification3 = new AndroidNotification();
             notification3.Title = "Hi! Its Sarah....";
             notification3.Text = NotificationTexts[Random.Range(0, NotificationTexts.Length)];
@@ -95,9 +96,9 @@ namespace GS.AA
                 AndroidNotificationCenter.CancelScheduledNotification(id3);
                 id3 = AndroidNotificationCenter.SendNotification(notification3, "reminder_1");
             }
-            #endregion
+#endregion
 
-            #region Notification
+#region Notification
             var notification4 = new AndroidNotification();
             notification4.Title = "Hi! Its Sarah....";
             notification4.Text = NotificationTexts[Random.Range(0, NotificationTexts.Length)];
@@ -113,9 +114,9 @@ namespace GS.AA
                 AndroidNotificationCenter.CancelScheduledNotification(id4);
                 id4 = AndroidNotificationCenter.SendNotification(notification4, "reminder_1");
             }
-            #endregion
+#endregion
 
-            #region Notification
+#region Notification
             var notification5 = new AndroidNotification();
             notification5.Title = "Hi! Its Sarah....";
             notification5.Text = NotificationTexts[Random.Range(0, NotificationTexts.Length)];
@@ -131,9 +132,9 @@ namespace GS.AA
                 AndroidNotificationCenter.CancelScheduledNotification(id5);
                 id5 = AndroidNotificationCenter.SendNotification(notification5, "reminder_1");
             }
-            #endregion
+#endregion
 
-            #region Notification
+#region Notification
             var notification6 = new AndroidNotification();
             notification6.Title = "Hi! Its Sarah....";
             notification6.Text = NotificationTexts[Random.Range(0, NotificationTexts.Length)];
@@ -149,7 +150,7 @@ namespace GS.AA
                 AndroidNotificationCenter.CancelScheduledNotification(id6);
                 id6 = AndroidNotificationCenter.SendNotification(notification6, "reminder_1");
             }
-            #endregion
+#endregion
 
         }
 
@@ -176,3 +177,4 @@ namespace GS.AA
         }
     }
 }
+#endif

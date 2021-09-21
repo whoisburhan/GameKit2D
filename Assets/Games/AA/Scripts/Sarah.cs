@@ -14,7 +14,9 @@ namespace GS.AA
             GameManager.Instance.IsPlay = false;
             if (GameManager.Instance.requestForAppReview)
             {
+#if UNITY_ANDROID || UNITY_IOS
                 StartCoroutine(InAppReviewManager.Instance.RequestReview());
+#endif
             }
         }
 
@@ -41,7 +43,9 @@ namespace GS.AA
             }
             else
             {
+#if UNITY_ANDROID || UNITY_IOS
                 AdmobAds.instance.reqBannerAd();
+#endif
             }
         }
     }

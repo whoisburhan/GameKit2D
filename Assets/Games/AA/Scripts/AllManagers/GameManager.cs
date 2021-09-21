@@ -88,11 +88,13 @@ namespace GS.AA
             lastLevelColorIndex = PlayerPrefs.GetInt(TagsAndPlayerprefs.LAST_LEVEL_COLOR_INDEX, 0);
             requestForAppReview = false;
 
+#if UNITY_ANDROID || UNITY_IOS
             if (currentLevel > 5)
             {
                 AdmobAds.instance.requestInterstital();
             }
             AdmobAds.instance.loadRewardVideo();
+#endif
 
             LoadLevel();
         }
@@ -108,6 +110,7 @@ namespace GS.AA
             Reset();
             OnGameReset?.Invoke();
 
+#if UNITY_ANDROID || UNITY_IOS
             if (adsTimer < 0 && currentLevel > 5)
             {
                 AdmobAds.instance.ShowInterstitialAd();
@@ -118,6 +121,7 @@ namespace GS.AA
             {
                 AdmobAds.instance.reqBannerAd();
             }
+#endif
 
             Application.targetFrameRate = 30;
             
@@ -153,7 +157,7 @@ namespace GS.AA
             spawner[0].SpawnBall();
             spawner[1].SpawnBall();
 
-            #region Circle-0
+#region Circle-0
 
             if (_levelData.ActiveCircle[0])
             {
@@ -170,9 +174,9 @@ namespace GS.AA
                 circles[0].SetActive(false);
             }
 
-            #endregion
+#endregion
 
-            #region Circle-1
+#region Circle-1
 
             if (_levelData.ActiveCircle[1])
             {
@@ -189,9 +193,9 @@ namespace GS.AA
                 circles[1].SetActive(false);
             }
 
-            #endregion
+#endregion
 
-            #region Circle-2
+#region Circle-2
 
             if (_levelData.ActiveCircle[2])
             {
@@ -208,7 +212,7 @@ namespace GS.AA
                 circles[2].SetActive(false);
             }
 
-            #endregion
+#endregion
 
             if (currentLevel < levelData.Count)
             {
@@ -341,10 +345,12 @@ namespace GS.AA
                 sarah.SetActive(false);
             }
             Debug.Log("S");
+#if UNITY_ANDROID || UNITY_IOS
             if (currentLevel > 5)
             {
                 AdmobAds.instance.hideBanner();
             }
+#endif
             sarah.GetComponent<Sarah>().SetDialogue(_dialogue);
             sarah.SetActive(true);
 

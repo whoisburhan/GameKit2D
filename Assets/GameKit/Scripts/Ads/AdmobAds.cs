@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_ANDROID || UNITY_IOS
+using UnityEngine;
 using GoogleMobileAds.Api;
 using GoogleMobileAds.Common;
 using System;
@@ -10,14 +11,14 @@ public class AdmobAds : MonoBehaviour
     string GameID = "ca-app-pub-4631286883932087~4553681857";
 
     // Dummy ads
-   /* string bannerAdId = "ca-app-pub-3940256099942544/6300978111";
+    string bannerAdId = "ca-app-pub-3940256099942544/6300978111";
     string InterstitialAdID = "ca-app-pub-3940256099942544/1033173712";
-    string rewarded_Ad_ID = "ca-app-pub-3940256099942544/5224354917";*/
+    string rewarded_Ad_ID = "ca-app-pub-3940256099942544/5224354917";
 
     // Real ads
-    string bannerAdId = "ca-app-pub-4631286883932087/9439462434";
-    string InterstitialAdID = "ca-app-pub-4631286883932087/4490388087";
-    string rewarded_Ad_ID = "ca-app-pub-4631286883932087/1365531293";
+    //string bannerAdId = "ca-app-pub-4631286883932087/9439462434";
+    //string InterstitialAdID = "ca-app-pub-4631286883932087/4490388087";
+    //string rewarded_Ad_ID = "ca-app-pub-4631286883932087/1365531293";
 
     public BannerView bannerAd;
     public InterstitialAd interstitial;
@@ -46,7 +47,7 @@ public class AdmobAds : MonoBehaviour
 
     }
 
-    #region rewarded Video Ads
+#region rewarded Video Ads
 
     public void loadRewardVideo()
     {
@@ -137,9 +138,9 @@ public class AdmobAds : MonoBehaviour
         }
     }
 
-    #endregion
+#endregion
 
-    #region banner
+#region banner
 
     public void reqBannerAd()
     {
@@ -162,9 +163,9 @@ public class AdmobAds : MonoBehaviour
         this.bannerAd.Hide();
     }
    
-    #endregion
+#endregion
 
-    #region interstitial
+#region interstitial
    
     public void requestInterstital()
     {
@@ -198,9 +199,9 @@ public class AdmobAds : MonoBehaviour
         }
     }
 
-    #endregion
+#endregion
 
-    #region adDelegates
+#region adDelegates
 
     //Delegates that i dont know
     public void HandleOnAdLoaded(object sender, EventArgs args)
@@ -231,7 +232,7 @@ public class AdmobAds : MonoBehaviour
         MonoBehaviour.print("HandleAdLeavingApplication event received");
     }
 
-    #endregion
+#endregion
 
     IEnumerator Delay()
     {
@@ -242,3 +243,4 @@ public class AdmobAds : MonoBehaviour
     }
 
 }
+#endif
