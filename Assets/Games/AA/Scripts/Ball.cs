@@ -24,6 +24,7 @@ namespace GS.AA
          //   GameManager.OnGameFinished += AutoDestroy;
             GameManager.OnGameOver += AutoDestroy;
             GameManager.OnLevelCompleted += AutoDestroy;
+            GameManager.OnColorSet += SetParticleColor;
             UIManager.OnForceToDestroy += AutoDestroy;
         }
 
@@ -32,12 +33,21 @@ namespace GS.AA
             // GameManager.OnGameFinished -= AutoDestroy;
             GameManager.OnGameOver -= AutoDestroy;
             GameManager.OnLevelCompleted -= AutoDestroy;
+            GameManager.OnColorSet -= SetParticleColor;
             UIManager.OnForceToDestroy -= AutoDestroy;
+            
         }
 
         private void Start()
         {
             rb2d = GetComponent<Rigidbody2D>();
+            SetParticleColor(GetComponent<SpriteRenderer>().color);
+        }
+
+        private void SetParticleColor(Color _color)
+        {
+            var _main = particle.main;
+            _main.startColor = _color;
         }
 
         private void Update()
@@ -98,6 +108,10 @@ namespace GS.AA
                 }
                 spawnFrom.SpawnBall();
                 GameManager.Instance.AddBallInCount();
+                
+                if (particle.isPlaying)
+                    particle.Stop();
+                particle.Play();
                 //Call Delegeate 
             }
 
