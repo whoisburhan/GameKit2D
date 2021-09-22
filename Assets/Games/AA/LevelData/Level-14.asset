@@ -29,5 +29,5 @@ MonoBehaviour:
   Circle_1_IsRunAndStopMode: 0
   Circle_2_IsRunAndStopMode: 0
   Circle_1_AND_Circle_2_SameSideRotation: 0
-  NoOfBallSpawnInSpawner0: 8
+  NoOfBallSpawnInSpawner0: 7
   NoOfBallSpawnInSpawner1: 0

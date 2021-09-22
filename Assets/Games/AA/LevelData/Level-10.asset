@@ -16,7 +16,7 @@ MonoBehaviour:
   Circle_0_Active_Enemy: 0100010001000100000000000000
   Circle_1_Active_Enemy: 0100000000000100000000000001
   Circle_2_Active_Enemy: 0001000000000000010000000001
-  Circle_0_Speed: 80
+  Circle_0_Speed: 50
   Circle_1_Speed: 45
   Circle_2_Speed: 45
   Circle_0_Two_Side_Rotation: 1

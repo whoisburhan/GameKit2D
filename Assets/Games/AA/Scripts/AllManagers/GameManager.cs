@@ -216,8 +216,8 @@ namespace GS.AA
 
             if (currentLevel < levelData.Count)
             {
-                OnColorSet?.Invoke(gameColors[currentLevel % 10]);
-                BallPrefab.GetComponent<ColorChanger>().SetColorInObject(gameColors[currentLevel % 10]);
+                OnColorSet?.Invoke(gameColors[currentLevel % gameColors.Length]);
+                BallPrefab.GetComponent<ColorChanger>().SetColorInObject(gameColors[currentLevel % gameColors.Length]);
             }
             else
             {
