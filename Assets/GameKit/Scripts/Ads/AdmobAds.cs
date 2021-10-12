@@ -11,9 +11,9 @@ public class AdmobAds : MonoBehaviour
     string GameID = "ca-app-pub-4631286883932087~4553681857";
 
     // Dummy ads
-   // string bannerAdId = "ca-app-pub-3940256099942544/6300978111";
-   // string InterstitialAdID = "ca-app-pub-3940256099942544/1033173712";
-   // string rewarded_Ad_ID = "ca-app-pub-3940256099942544/5224354917";
+    //string bannerAdId = "ca-app-pub-3940256099942544/6300978111";
+    //string InterstitialAdID = "ca-app-pub-3940256099942544/1033173712";
+    //string rewarded_Ad_ID = "ca-app-pub-3940256099942544/5224354917";
 
     // Real ads
     string bannerAdId = "ca-app-pub-4631286883932087/9439462434";
@@ -22,7 +22,7 @@ public class AdmobAds : MonoBehaviour
 
     public BannerView bannerAd;
     public InterstitialAd interstitial;
-    public RewardBasedVideoAd rewardedAd;
+    public RewardedAd rewardedAd;
 
     public static AdmobAds instance;
 
@@ -35,8 +35,6 @@ public class AdmobAds : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this);
-
-        rewardedAd = RewardBasedVideoAd.Instance;
     }
 
     // Start is called before the first frame update
@@ -51,14 +49,18 @@ public class AdmobAds : MonoBehaviour
 
     public void loadRewardVideo()
     {
-        rewardedAd.LoadAd(new AdRequest.Builder().Build(), rewarded_Ad_ID);
+        rewardedAd = new RewardedAd(rewarded_Ad_ID);
+
+        AdRequest request = new AdRequest.Builder().Build();
+        rewardedAd.LoadAd(request);
 
         rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
         rewardedAd.OnAdClosed += HandleRewardedAdClosed;
         rewardedAd.OnAdOpening += HandleRewardedAdOpening;
         rewardedAd.OnAdFailedToLoad += HandleRewardedAdFailedToLoad;
-        rewardedAd.OnAdRewarded += HandleUserEarnedReward;
-        rewardedAd.OnAdLeavingApplication += HandleOnRewardAdleavingApp;
+        rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
+       // rewardedAd.OnAdRewarded += HandleUserEarnedReward;
+       // rewardedAd.OnAdLeavingApplication += HandleOnRewardAdleavingApp;
 
     }
     
@@ -179,7 +181,7 @@ public class AdmobAds : MonoBehaviour
         // Called when the user returned from the app after an ad click.
         this.interstitial.OnAdClosed += this.HandleOnAdClosed;
         // Called when the ad click caused the user to leave the application.
-        this.interstitial.OnAdLeavingApplication += this.HandleOnAdLeavingApplication;
+       // this.interstitial.OnAdLeavingApplication += this.HandleOnAdLeavingApplication;
 
         AdRequest request = new AdRequest.Builder().Build();
 
@@ -211,7 +213,7 @@ public class AdmobAds : MonoBehaviour
 
     public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-        Debug.Log("couldnt load ad" + args.Message);
+        //Debug.Log("couldnt load ad" + args.Message);
     }
 
     public void HandleOnAdOpened(object sender, EventArgs args)
