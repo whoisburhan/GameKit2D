@@ -121,6 +121,7 @@ namespace GS.AA
             skipButton.onClick.AddListener(() => 
             {
                 OnForceToDestroy?.Invoke();
+                try{
 #if UNITY_ANDROID || UNITY_IOS
                if (AdmobAds.instance.IsRewarededVideoLoaded())
                 {
@@ -134,6 +135,11 @@ namespace GS.AA
                     GameManager.Instance.ActivateSarah("Oops! No Rewarded\n ads available now...");
                 }
 #endif
+                }catch(Exception e)
+                {
+                    Time.timeScale = 1f;
+                    GameManager.Instance.ActivateSarah("Oops! No Rewarded\n ads available now...");
+                }
             });
         }
 

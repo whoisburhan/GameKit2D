@@ -67,7 +67,7 @@ namespace GS.AA
 
         private void Awake()
         {
-            if(Instance != null)
+            if (Instance != null)
             {
                 Destroy(this.gameObject);
             }
@@ -88,13 +88,17 @@ namespace GS.AA
             lastLevelColorIndex = PlayerPrefs.GetInt(TagsAndPlayerprefs.LAST_LEVEL_COLOR_INDEX, 0);
             requestForAppReview = false;
 
-#if UNITY_ANDROID || UNITY_IOS
-            if (currentLevel > 5)
+            try
             {
-                AdmobAds.instance.requestInterstital();
-            }
-            AdmobAds.instance.loadRewardVideo();
+#if UNITY_ANDROID || UNITY_IOS
+                if (currentLevel > 5)
+                {
+                    AdmobAds.instance.requestInterstital();
+                }
+                AdmobAds.instance.loadRewardVideo();
 #endif
+            }
+            catch (Exception e) { }
 
             LoadLevel();
         }
@@ -110,21 +114,26 @@ namespace GS.AA
             Reset();
             OnGameReset?.Invoke();
 
-#if UNITY_ANDROID || UNITY_IOS
-            if (adsTimer < 0 && currentLevel > 5)
+            try
             {
-                AdmobAds.instance.ShowInterstitialAd();
-                adsTimer = AdsTimeInterval;
-            }
 
-            if (currentLevel > 5)
-            {
-                AdmobAds.instance.reqBannerAd();
-            }
+#if UNITY_ANDROID || UNITY_IOS
+                if (adsTimer < 0 && currentLevel > 5)
+                {
+                    AdmobAds.instance.ShowInterstitialAd();
+                    adsTimer = AdsTimeInterval;
+                }
+
+                if (currentLevel > 5)
+                {
+                    AdmobAds.instance.reqBannerAd();
+                }
 #endif
+            }
+            catch (Exception e) { }
 
             Application.targetFrameRate = 30;
-            
+
 
             if (requestForAppReview)
             {
@@ -132,8 +141,8 @@ namespace GS.AA
             }
 
             if (currentLevel < levelData.Count)
-            { 
-                 LevelDataIndex = currentLevel; //Need a function
+            {
+                LevelDataIndex = currentLevel; //Need a function
             }
             else
             {
@@ -157,7 +166,7 @@ namespace GS.AA
             spawner[0].SpawnBall();
             spawner[1].SpawnBall();
 
-#region Circle-0
+            #region Circle-0
 
             if (_levelData.ActiveCircle[0])
             {
@@ -167,16 +176,16 @@ namespace GS.AA
                 circles[0].GetComponent<Rotator>().IsRotateRight = _levelData.Circle_0_IsRotateRight;
                 circles[0].GetComponent<Circle>().SetEnemyActivityStatus(_levelData.Circle_0_Active_Enemy);
                 circles[0].GetComponent<Circle>().TwoSideRotation = _levelData.Circle_0_Two_Side_Rotation;
-                circles[0].GetComponent<Circle>().levelText.text = (currentLevel+1).ToString();
+                circles[0].GetComponent<Circle>().levelText.text = (currentLevel + 1).ToString();
             }
             else
             {
                 circles[0].SetActive(false);
             }
 
-#endregion
+            #endregion
 
-#region Circle-1
+            #region Circle-1
 
             if (_levelData.ActiveCircle[1])
             {
@@ -186,16 +195,16 @@ namespace GS.AA
                 circles[1].GetComponent<Rotator>().IsRotateRight = _levelData.Circle_1_IsRotateRight;
                 circles[1].GetComponent<Circle>().SetEnemyActivityStatus(_levelData.Circle_1_Active_Enemy);
                 circles[1].GetComponent<Circle>().TwoSideRotation = _levelData.Circle_1_Two_Side_Rotation;
-                circles[1].GetComponent<Circle>().levelText.text = (currentLevel+1).ToString();
+                circles[1].GetComponent<Circle>().levelText.text = (currentLevel + 1).ToString();
             }
             else
             {
                 circles[1].SetActive(false);
             }
 
-#endregion
+            #endregion
 
-#region Circle-2
+            #region Circle-2
 
             if (_levelData.ActiveCircle[2])
             {
@@ -205,14 +214,14 @@ namespace GS.AA
                 circles[2].GetComponent<Rotator>().IsRotateRight = _levelData.Circle_2_IsRotateRight;
                 circles[2].GetComponent<Circle>().SetEnemyActivityStatus(_levelData.Circle_2_Active_Enemy);
                 circles[2].GetComponent<Circle>().TwoSideRotation = _levelData.Circle_2_Two_Side_Rotation;
-                circles[2].GetComponent<Circle>().levelText.text = (currentLevel+1).ToString();
+                circles[2].GetComponent<Circle>().levelText.text = (currentLevel + 1).ToString();
             }
             else
             {
                 circles[2].SetActive(false);
             }
 
-#endregion
+            #endregion
 
             if (currentLevel < levelData.Count)
             {
@@ -235,7 +244,7 @@ namespace GS.AA
                     BallPrefab.GetComponent<ColorChanger>().SetColorInObject(gameColors[lastLevelColorIndex]);
                 }
             }
-            OnLevelStatusUpdate?.Invoke(currentLevel+1);
+            OnLevelStatusUpdate?.Invoke(currentLevel + 1);
 
             IsPlay = true;
 
@@ -248,7 +257,7 @@ namespace GS.AA
         public void AddBallInCount()
         {
             totalBall++;
-            if(totalBall >= RequiredBall)
+            if (totalBall >= RequiredBall)
             {
                 Debug.Log("ALL BALL HITTED!!");
                 LevelComplete();
@@ -256,12 +265,12 @@ namespace GS.AA
             else
             {
                 // Play different sound clip at each ball
-              /*  if(currentBallHitSoundIndex >= ballHitSounds.Length)
-                {
-                    currentBallHitSoundIndex = 0;
-                }
-                AudioManager.Instance.Play(ballHitSounds[currentBallHitSoundIndex]);
-                currentBallHitSoundIndex++; */
+                /*  if(currentBallHitSoundIndex >= ballHitSounds.Length)
+                  {
+                      currentBallHitSoundIndex = 0;
+                  }
+                  AudioManager.Instance.Play(ballHitSounds[currentBallHitSoundIndex]);
+                  currentBallHitSoundIndex++; */
             }
         }
 
@@ -277,10 +286,10 @@ namespace GS.AA
                 OnGameOver?.Invoke();
                 isLevelCompletedOrGameOver = true;
                 isReloadedSameLevel = true;
-                
+
 
                 failedAttempt++;
-                if(failedAttempt == 4)
+                if (failedAttempt == 4)
                 {
                     ActivateSarah("Too Hard??\n you can skip level..");
                     failedAttempt = 0;
@@ -324,7 +333,7 @@ namespace GS.AA
         public void SkipLevel()
         {
             currentLevel++;
-            PlayerPrefs.SetInt(TagsAndPlayerprefs.CURRENT_LEVEL,currentLevel);
+            PlayerPrefs.SetInt(TagsAndPlayerprefs.CURRENT_LEVEL, currentLevel);
             isReloadedSameLevel = false;
             failedAttempt = 0;
             PlayerPrefs.SetInt(TagsAndPlayerprefs.IS_LAST_LEVEL_RELOADED, 0);
@@ -340,21 +349,27 @@ namespace GS.AA
         // Enable Game Instuctor sara who help you to understand the game
         public void ActivateSarah(string _dialogue = "")
         {
-            if(sarah.activeSelf == true)
+            if (sarah.activeSelf == true)
             {
                 sarah.SetActive(false);
             }
             Debug.Log("S");
-#if UNITY_ANDROID || UNITY_IOS
-            if (currentLevel > 5)
+
+            try
             {
-                AdmobAds.instance.hideBanner();
-            }
+#if UNITY_ANDROID || UNITY_IOS
+                if (currentLevel > 5)
+                {
+                    AdmobAds.instance.hideBanner();
+                }
 #endif
+            }
+            catch (Exception e) { };
+
             sarah.GetComponent<Sarah>().SetDialogue(_dialogue);
             sarah.SetActive(true);
 
-          //  AdmobAds.instance.hideBanner();
+            //  AdmobAds.instance.hideBanner();
         }
 
 

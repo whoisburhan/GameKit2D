@@ -56,7 +56,7 @@ namespace GS.AA
             {
                 if (isCurrentBall && !isFired)
                 {
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_WEBGL
                     if (Input.touchCount > 0)
                     {
                         Touch[] touches = Input.touches;
@@ -73,7 +73,7 @@ namespace GS.AA
                         }
                     }
 #endif
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
                     {
                         AudioManager.Instance.Play(GameManager.Instance.BallFireClip);
                         isFired = true;
