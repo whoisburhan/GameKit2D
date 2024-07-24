@@ -72,7 +72,7 @@ namespace GS.AA
             if (GameManager.Instance != null && GameManager.Instance.currentLevel > 5)
             {
 #if UNITY_ANDROID || UNITY_IOS
-                AdmobAds.instance.hideBanner();
+                //AdmobAds.instance.hideBanner();
 #endif
             }
         }
@@ -84,7 +84,7 @@ namespace GS.AA
             if (GameManager.Instance != null && GameManager.Instance.currentLevel > 5)
             {
 #if UNITY_ANDROID || UNITY_IOS
-                AdmobAds.instance.hideBanner();
+                //AdmobAds.instance.hideBanner();
 #endif
             }
         }
@@ -120,26 +120,26 @@ namespace GS.AA
 
             skipButton.onClick.AddListener(() => 
             {
-                OnForceToDestroy?.Invoke();
-                try{
-#if UNITY_ANDROID || UNITY_IOS
-               if (AdmobAds.instance.IsRewarededVideoLoaded())
-                {
-                    // Time.timeScale = 0f;
-                    AdmobAds.instance.showVideoAd();
-                   // UnityAdsManager.Instance.ShowAds("rewardedVideo");
-                }
-                else
-                {
-                    Time.timeScale = 1f;
-                    GameManager.Instance.ActivateSarah("Oops! No Rewarded\n ads available now...");
-                }
-#endif
-                }catch(Exception e)
-                {
-                    Time.timeScale = 1f;
-                    GameManager.Instance.ActivateSarah("Oops! No Rewarded\n ads available now...");
-                }
+//                OnForceToDestroy?.Invoke();
+//                try{
+//#if UNITY_ANDROID || UNITY_IOS
+//               if (AdmobAds.instance.IsRewarededVideoLoaded())
+//                {
+//                    // Time.timeScale = 0f;
+//                    AdmobAds.instance.showVideoAd();
+//                   // UnityAdsManager.Instance.ShowAds("rewardedVideo");
+//                }
+//                else
+//                {
+//                    Time.timeScale = 1f;
+//                    GameManager.Instance.ActivateSarah("Oops! No Rewarded\n ads available now...");
+//                }
+//#endif
+//                }catch(Exception e)
+//                {
+//                    Time.timeScale = 1f;
+//                    GameManager.Instance.ActivateSarah("Oops! No Rewarded\n ads available now...");
+//                }
             });
         }
 

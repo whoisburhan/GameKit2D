@@ -28,7 +28,7 @@ namespace GS.AA
         private bool isLevelCompletedOrGameOver = false;
 
         //Those variable are used when levels are randomly picked
-        private bool isReloadedSameLevel = false;
+        public bool isReloadedSameLevel = false;
         private int lastLevelColorIndex = 0;
         private int lastLevelIndex = 0;
         private int failedAttempt = 0;
@@ -93,9 +93,9 @@ namespace GS.AA
 #if UNITY_ANDROID || UNITY_IOS
                 if (currentLevel > 5)
                 {
-                    AdmobAds.instance.requestInterstital();
+                    //AdmobAds.instance.requestInterstital();
                 }
-                AdmobAds.instance.loadRewardVideo();
+                //AdmobAds.instance.loadRewardVideo();
 #endif
             }
             catch (Exception e) { }
@@ -120,19 +120,19 @@ namespace GS.AA
 #if UNITY_ANDROID || UNITY_IOS
                 if (adsTimer < 0 && currentLevel > 5)
                 {
-                    AdmobAds.instance.ShowInterstitialAd();
+                    //AdmobAds.instance.ShowInterstitialAd();
                     adsTimer = AdsTimeInterval;
                 }
 
                 if (currentLevel > 5)
                 {
-                    AdmobAds.instance.reqBannerAd();
+                    //AdmobAds.instance.reqBannerAd();
                 }
 #endif
             }
             catch (Exception e) { }
 
-            Application.targetFrameRate = 30;
+            Application.targetFrameRate = 60;
 
 
             if (requestForAppReview)
@@ -360,7 +360,7 @@ namespace GS.AA
 #if UNITY_ANDROID || UNITY_IOS
                 if (currentLevel > 5)
                 {
-                    AdmobAds.instance.hideBanner();
+                    //AdmobAds.instance.hideBanner();
                 }
 #endif
             }
