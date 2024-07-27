@@ -64,17 +64,18 @@ namespace FantasyRealm.AA
             m_GameOverPanelRetryButton.onClick.AddListener(RestartLevel);
             m_GameOverPanelWithSkipOptionRetryButton.onClick.AddListener(RestartLevel);
 
-            m_GameOverPanelWithSkipOptionSkipButton.onClick.AddListener(() => { });
+            m_GameOverPanelWithSkipOptionSkipButton.onClick.AddListener(SkipLevel);
         }
 
         private void BackToMainMenu() 
         {
+            GameManager.Instance.ClickSound();
             SceneLoader.Instance.LoadScene("MainMenuGD");
-
         }
 
         private void RestartLevel()
         {
+            GameManager.Instance.ClickSound();
             SceneLoader.Instance.LoadScene("GD");
         }
 
@@ -99,6 +100,15 @@ namespace FantasyRealm.AA
         {
             m_GameOverPanelWithSkipOption.SetActive(true);
             BGContainer.Instance.SameLevelLoad = true;
+        }
+
+        private void SkipLevel() 
+        {
+            GameManager.Instance.CurrentLevel++;
+            GameManager.Instance.LastRandomLevel = -1;
+            GameManager.Instance.ClickSound();
+            BGContainer.Instance.SameLevelLoad = false;
+            SceneLoader.Instance.LoadScene("GD");
         }
     }
 }

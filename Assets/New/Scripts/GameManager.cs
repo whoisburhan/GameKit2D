@@ -24,10 +24,12 @@ namespace FantasyRealm.AA
 		[SerializeField] private AudioClip victoryClip;
 		[SerializeField] private AudioClip gameOverClip;
 		[SerializeField] private AudioClip pinFireClip;
+		[SerializeField] private AudioClip clickClip;
 		[Header("Particles")]
 		[SerializeField] private GameObject victoryParticle;
 
         private const string FILE_KEY = "CURRENT_LEVEL";
+		private const string FILE_KEY_LAST_RANDOM_LEVEL = "LAST_RANDOM_LEVEL";
 
 		private int pinLeftToCompleteLevel;
 
@@ -49,7 +51,7 @@ namespace FantasyRealm.AA
         {
             get
             {
-                return PlayerPrefs.GetInt(FILE_KEY, 0);
+                return PlayerPrefs.GetInt(FILE_KEY, 1);
             }
             set
             {
@@ -58,6 +60,17 @@ namespace FantasyRealm.AA
         }
 
 
+        public int LastRandomLevel
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(FILE_KEY_LAST_RANDOM_LEVEL, -1);
+            }
+            set
+            {
+                PlayerPrefs.SetInt(FILE_KEY_LAST_RANDOM_LEVEL, value);
+            }
+        }
         private void Awake()
         {
             if(Instance == null) 
@@ -81,7 +94,7 @@ namespace FantasyRealm.AA
 			if (gameHasEnded)
 				return;
 
-			audioSource.PlayOneShot(gameOverClip);
+			AudioManager.Instance.PlayAudio(AudioName.Losing);
 
 			rotator.enabled = false;
 			spawner.enabled = false;
@@ -92,21 +105,28 @@ namespace FantasyRealm.AA
 		}
 
 
-		public async void LevelCompleted() 
+		public void LevelCompleted() 
 		{
-            await Task.Delay(200);
+           // await Task.Delay(200);
             if (gameHasEnded)
                 return;
             CurrentLevel++;
+			LastRandomLevel = -1;
 			UIManager.Instance.ActivateVictoryPanel();
-			audioSource.PlayOneShot(victoryClip);
+
+			AudioManager.Instance.PlayAudio(AudioName.Winnig);
 			victoryParticle.SetActive(true);
 		}
 
 		public void TriggerPinFireSound() 
 		{
-			audioSource.PlayOneShot(pinFireClip);
-		}
+            AudioManager.Instance.PlayAudio(AudioName.Bubble);
+        }
+
+		public void ClickSound() 
+		{
+            AudioManager.Instance.PlayAudio(AudioName.ButtonClick);
+        }
 
 		public void RestartLevel()
 		{

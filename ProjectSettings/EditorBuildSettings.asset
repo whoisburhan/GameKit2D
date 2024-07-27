@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Essential/StartScene.unity
     guid: c1806d41786d1d54b90a60ac73be58c1
-  - enabled: 1
+  - enabled: 0
     path: Assets/New/Scenes/MainMenu.unity
     guid: 78d7e2e7db2d79d47b5d9143e3cd0bf0
-  - enabled: 1
+  - enabled: 0
     path: Assets/New/MainLevel.unity
     guid: 6e274674ffae43647a7e0ad7b830858b
-  - enabled: 1
+  - enabled: 0
     path: Assets/New/Scenes/MainMenuGD.unity
     guid: 9c5b4ea0ea906e848a48cf1919f84296
   - enabled: 1

@@ -1284,6 +1284,7 @@ MonoBehaviour:
   victoryClip: {fileID: 8300000, guid: 234950d2db6112440a191f5a489d2780, type: 3}
   gameOverClip: {fileID: 8300000, guid: af3c67f450f82e34e9287bcaaef48a01, type: 3}
   pinFireClip: {fileID: 8300000, guid: 9d4ea29b734bd56429c60b67a30f0359, type: 3}
+  clickClip: {fileID: 8300000, guid: 92ea24352a6738b44991daf7ded3143d, type: 3}
   victoryParticle: {fileID: 25119981}
 --- !u!95 &580275669
 Animator:
@@ -1631,7 +1632,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 580275666}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3507,7 +3508,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 66c442a0be7f6374f866cf6a84b36ee3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 96697ce75f61e13419321161cb7e4d9a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

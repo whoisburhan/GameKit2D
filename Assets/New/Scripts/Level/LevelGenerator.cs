@@ -104,8 +104,10 @@ namespace FantasyRealm.AA {
 
         public void RequestForLoadLevel(int levelNo)
         {
-            int _newLevelNo = levelNo >= levels.Count ? UnityEngine.Random.Range(1, levels.Count) : levelNo;
+            int randomLvl = GameManager.Instance.LastRandomLevel == -1 ? UnityEngine.Random.Range(1, levels.Count) : GameManager.Instance.LastRandomLevel;
+            int _newLevelNo = levelNo >= levels.Count ? randomLvl : levelNo;
             LoadLevel(levels[_newLevelNo]);
+            GameManager.Instance.LastRandomLevel = randomLvl;
         }
 
         private void LoadLevel(Level newLevel)

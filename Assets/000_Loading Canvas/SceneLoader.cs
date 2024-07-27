@@ -28,9 +28,15 @@ public class SceneLoader : MonoBehaviour
 
     private void Start()
     {
-        //startButton.onClick.AddListener(() => { LoadScene("Game"); });
-       // startButton.onClick.AddListener(() => { LoadScene(SceneName.GameScene); });
+        startButton.onClick.AddListener(StartGame);
+        // startButton.onClick.AddListener(() => { LoadScene(SceneName.GameScene); });
+
+    }
+
+    private void StartGame() 
+    {
         LoadScene("GD");
+        AudioManager.Instance.PlayAudio(AudioName.ButtonClick);
     }
 
 

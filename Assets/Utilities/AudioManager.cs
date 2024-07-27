@@ -49,5 +49,5 @@ public class AudioObj
 }
 public enum AudioName
 {
-    Winnig, Matched, ModeSwitch, Bubble
+    Winnig, Matched, ModeSwitch, Bubble, ButtonClick, Losing
 }
